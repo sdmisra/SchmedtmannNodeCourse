@@ -22,21 +22,28 @@ const url = require('url');
 // console.log('Will read file!')
 // Server stuff:
 
-const data = fs.readFileSync(`${__dirname}/dev-data/AllWorlds.json`, 'utf-8');
-// const dataObj = JSON.parse(data);
+const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.json`, 'utf-8');
+const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.json`, 'utf-8');
+const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product`, 'utf-8');
+const data = fs.readFileSync(`${__dirname}/data/data.json`, 'utf-8')
+const dataObj = JSON.parse(data);
 
 const server = http.createServer((req, res)=> {
   console.log(req.url)
 
   const pathname = req.url
 
+  // Overview page:
   if (pathname=== '/overview' || pathname === '/') {
     res.end('This is the OVERVIEW!')
+  // Product page:
   } else if (pathname === '/product') {
     res.end('This is the PRODUCT!')
+  // API page:
   } else if (pathname === '/api'){
     res.writeHead(200, {'Content-type': 'application/json'})
     res.end(data)
+  // Not found:
   }else {
     res.writeHead(404, {'Content-type': 'text/html'})
     res.end('<h1>Page not found!</h1>')
