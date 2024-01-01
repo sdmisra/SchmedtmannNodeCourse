@@ -22,8 +22,8 @@ const url = require('url');
 // console.log('Will read file!')
 // Server stuff:
 
-const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
-const dataObj = JSON.parse(data);
+const data = fs.readFileSync(`${__dirname}/dev-data/AllWorlds.json`, 'utf-8');
+// const dataObj = JSON.parse(data);
 
 const server = http.createServer((req, res)=> {
   console.log(req.url)
